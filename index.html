@@ -13,7 +13,29 @@
     </header>
 
     <main class="main">
-        
+            <form class="form" action="form" id="form">
+                <div class="form__elemen">
+                    <label class="form__label" for="judul">Judul</label><br>
+                    <input class="form__input type="text" name="inputJudul" id="inputJudul" required>
+                </div>
+                <div class="form__elemen">
+                    <label class="form__label" for="judul">Penulis</label><br>
+                    <input class="form__input type="text" name="inputPenulis" id="inputPenulis" required>
+                </div>
+                <div class="form__elemen">
+                    <label class="form__label" for="judul">Tahun</label><br>
+                    <input class="form__input" type="number" name="inputTahun" id="inputTahun" required>
+                </div>
+                <div class="form__elemen">
+                    <div class="form__cn-input-check-box">
+                        <input class ="form__input-check-box" type="checkbox" name="inputStatus" id="inputStatus">
+                        <label class="form__text">Selesai dibaca</label>
+                    </div>
+                </div>
+                <div class="form__elemen">
+                    <input class="form__submit" type="submit" name="inputJudul" id="inputJudul" value="Masukan ke rak">
+                </div>
+            </form>
     </main>
 </body>
 </html>

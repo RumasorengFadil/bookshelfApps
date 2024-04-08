@@ -1,3 +1,4 @@
+/* ? Header */
 .header{
     height: 2.5rem;
     background-color: #FFFFFF;
@@ -7,11 +8,60 @@
     justify-content: center;
 }
 
-
 .header__title{
     font-size: 1.5rem;
 }
 
-body{
+/*? main*/
+.main{
+    padding: 0 1.25rem;
+}
+
+/* Form */
+.form{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: #FFFFFF;
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    border-radius: 10px;
+}
+.form__elemen{
+    margin-bottom: 14px;
+}
+.form-cn{
+    margin-bottom: 48px;
+}
+.form__input{
+    width: 100%;
+    height: 38px;
+    border: 1px solid black;
+    margin-top: 5px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+.form__label{
+    font-size: 0.875rem;
+}
+.form__input-check-box{
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+}
+.form__cn-input-check-box{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.form__text{
+    font-size: 0.875rem;
+}
+.form__submit{
+    width: 5.5625rem;
+    height: 27px;
     background-color: #2192FF;
+    border-radius: 3px;
+    border: unset;
+    font-size: 0.6875rem;
+    color: #FFFFFF;
+    cursor: pointer;
 }
