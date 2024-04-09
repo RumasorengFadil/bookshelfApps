@@ -14,6 +14,7 @@
 
     <main class="main">
         <form class="form" action="form" id="form">
+            <img class="form__btn-close hidden" src="assets/icon/x.svg">
             <div class="form__elemen">
                 <label class="form__label" for="judul">Judul</label><br>
                 <input class="form__input" type="text" name="inputJudul" id="inputJudul" required>
@@ -50,14 +51,6 @@
                     <h1 class="todo__judul">Belum selesai dibaca</h1>
 
                     <div class="todo__list-belum">
-                        <!-- <div class="card" id="0">
-                            <img class="card__icn-edit" src="assets/icon/edit.svg">
-                            <p class="card__tahun">2002</p>
-                            <h5 class="card__judul">halllo</h5>
-                            <figcaption class="card__penulis">fadil</figcaption>
-                            <img class="card__btn-selesai" src="assets/icon/check-square.svg" alt="Finish">
-                            <img class="card__btn-delete" src="assets/icon/trash.svg" alt="Delete">
-                        </div> -->
                     </div>
                 </div>  
 
@@ -67,17 +60,10 @@
                     <h1 class="todo__judul">Selesai dibaca</h1>
 
                     <div class="todo__list-selesai">
-                        <!-- <div class="card" id="0">
-                            <img class="card__icn-edit" src="assets/icon/edit.svg">
-                            <p class="card__tahun">2002</p>
-                            <h5 class="card__judul">halllo</h5>
-                            <figcaption class="card__penulis">fadil</figcaption>
-                            <img class="card__btn-selesai" src="assets/icon/rotate-ccw.svg" alt="Undo">
-                            <img class="card__btn-delete" src="assets/icon/trash.svg" alt="Delete">
-                        </div> -->
                     </div>
                 </div>
         </div>
+        <div class="overlay hidden"></div>
     </main>
     <script type="module" src="script.js"></script>
 </body>
@@ -109,4 +95,3 @@
         </div>
     </form>
 </div>
-<div class="overlay hidden"></div> -->

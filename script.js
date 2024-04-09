@@ -3,8 +3,11 @@ import { LOCAL_STR_KEY } from "./config.js";
 const completedTodo = document.querySelector(".todo__list-selesai");
 const uncompletedTodo = document.querySelector(".todo__list-belum");
 const form = document.querySelector(".form");
+const submitBtn = document.querySelector(".form__submit");
 const todoEl = document.querySelector(".todo");
 const searchInput = document.querySelector(".search__input-search");
+const overlay = document.querySelector(".overlay");
+const btnClose = document.querySelector(".form__btn-close");
 let todoList = [];
 
 const renderTodo = function(todo){
@@ -69,6 +72,8 @@ const deleteTodo = function(){
     todoList.forEach(todo => renderTodo(todo));
 }
 
+
+
 searchInput.addEventListener("input", function(){
     const todoListEl = document.querySelectorAll(".card");
     const searchValue = searchInput.value.toLowerCase();
@@ -96,6 +101,28 @@ todoEl.addEventListener("click", function(e){
     if(e.target.classList.contains("card__btn-delete")){
         deleteTodo.call(e);
     }
+    console.log(e.target.classList.contains("card__icn-edit"));
+    console.log(document.querySelector(".card__icn-edit"));
+    if(e.target.classList.contains("card__icn-edit")){
+        form.classList.add("form-edit");
+        overlay.classList.remove("hidden");
+        btnClose.classList.remove("hidden");
+        submitBtn.value = "Ubah";
+    }
+})
+
+overlay.addEventListener("click", function(){
+    form.classList.remove("form-edit");
+    overlay.classList.add("hidden");
+    btnClose.classList.add("hidden");
+    submitBtn.value = "Masukan ke rak";
+})
+
+btnClose.addEventListener("click", function(){
+    form.classList.remove("form-edit");
+    overlay.classList.add("hidden");
+    btnClose.classList.add("hidden");
+    submitBtn.value = "Masukan ke rak";
 })
 form.addEventListener("submit", function(e){
     e.preventDefault();

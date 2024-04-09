@@ -25,6 +25,17 @@
     margin-top: 1.25rem;
     border-radius: 10px;
 }
+.form-edit{
+    width: 50%;
+    position:fixed;
+    z-index: 10;
+    top: -50%;
+    left: 50%;
+    margin-top: 70vh;
+    margin-left: -25%;
+    transition:all linear 500ms;
+    transition-property: margin-top;
+}
 .form__elemen{
     margin-bottom: 14px;
 }
@@ -215,10 +226,10 @@
 .hidden{
     display: none;
 }
-.edit-todo__icn-close{
+.form__btn-close{
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 10px;
+    top: 10px;
     cursor: pointer;
 }
 
