@@ -74,9 +74,11 @@
     padding: 20px;
     border-radius: 10px;
     margin-top: 1.25rem;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 }
 .search__title{
     margin-bottom: 5px;
+    font-size: 1.5rem;
 }
 .search__input-cn{
     display: flex;
@@ -93,4 +95,139 @@
     margin-left: 14px;
     cursor: pointer;
     border: 1px solid #BBBBBB;
+}
+
+/*? Todo */
+.todo{
+    display: flex;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow: hidden;
+}
+.todo__judul{
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+/* To-do belum selesai */
+.todo__belum{
+    background-color: #FFFFFF;
+    padding: 20px;
+    max-height: 350px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    overflow-y: scroll;
+    padding-bottom: 20px;
+    width: 100%;
+    flex: 1;
+}
+
+/* to-do white space */
+.todo__white-space{
+    flex-basis: 1.25rem;
+}
+/* To-do Selesai */
+.todo__selesai{
+    background-color: #FFFFFF;
+    padding: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    max-height: 350px;
+    overflow-y: scroll;
+    width: 100%;
+    flex: 1;
+
+}
+
+
+/*? Card */
+.card{
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.card__icn-edit{
+    right: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    background-color: #EEEEEE;
+    border-top-right-radius: 5px;
+    cursor : pointer;
+}
+.card__btn-undo{
+    /* background-color: #5FD068; */
+    margin-right: 20px;
+    cursor: pointer;
+}
+.card__btn-delete{
+    border: unset;
+    cursor: pointer;
+    margin-bottom: 1px;
+}
+.card__judul{
+    font-size: 0.875rem;
+}
+.card__penulis{
+    margin: 2px 0 8px 0;
+    font-size: 0.625rem;
+}
+.card__btn-selesai{
+    border: unset;
+    cursor: pointer;
+    margin-right: 20px;
+}
+.card__tahun{
+    position: absolute;
+    right: 17px;
+    top: 25px;
+    font-size: 14px;
+}
+.edit-todo{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 95%;
+    background-color: #D9EEFF;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+    padding: 40px 20px 40px 20px;
+    z-index: 10;
+}
+.overlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 1;
+}
+.hidden{
+    display: none;
+}
+.edit-todo__icn-close{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+
+
+@media only screen and (min-width: 720px){
+    .todo{
+        flex-direction: row;
+    }
+    /* .todo__belum{
+        width: 480px;
+        margin-right: 1.25rem;
+    }
+    .todo__selesai{
+        width: 480px;
+    } */
 }
