@@ -4,6 +4,7 @@ const completedTodo = document.querySelector(".todo__list-selesai");
 const uncompletedTodo = document.querySelector(".todo__list-belum");
 const form = document.querySelector(".form");
 const todoEl = document.querySelector(".todo");
+const searchInput = document.querySelector(".search__input-search");
 let todoList = [];
 
 const renderTodo = function(todo){
@@ -57,7 +58,6 @@ const toggleTodoList = function(){
 }
 
 const deleteTodo = function(){
-    console.log(this);
     const cardId = +this.target.closest(".card").id;
         
     todoList = todoList.filter(todo =>{
@@ -68,6 +68,26 @@ const deleteTodo = function(){
     clearTodo();
     todoList.forEach(todo => renderTodo(todo));
 }
+
+searchInput.addEventListener("input", function(){
+    const todoListEl = document.querySelectorAll(".card");
+    const searchValue = searchInput.value.toLowerCase();
+
+    todoListEl.forEach(todo => {
+        const todoTitle = todo.querySelector(".card__judul").textContent.toLowerCase();
+        const todoWriter = todo.querySelector(".card__penulis").textContent.toLowerCase();
+        const todoYear = todo.querySelector(".card__tahun").textContent.toLowerCase();
+        
+        if(todoTitle.includes(searchValue) || 
+        todoWriter.includes(searchValue) ||
+        todoYear.includes(searchValue)){
+            todo.classList.remove("hidden");
+        }else{
+            todo.classList.add("hidden");
+        }
+    })
+})
+
 todoEl.addEventListener("click", function(e){
     if(e.target.classList.contains("card__btn-selesai")){
         toggleTodoList.call(e);
@@ -80,23 +100,29 @@ todoEl.addEventListener("click", function(e){
 form.addEventListener("submit", function(e){
     e.preventDefault();
 
-    const titleValue = document.querySelector("#inputJudul").value;
-    const writerValue = document.querySelector("#inputPenulis").value;
-    const yearValue = document.querySelector("#inputTahun").value;
-    const isCompleted = document.querySelector("#inputStatus").checked;
+    let inputTitle = document.querySelector("#inputJudul");
+    let inputWriter = document.querySelector("#inputPenulis");
+    let inputYear = document.querySelector("#inputTahun");
+    let isCompleted = document.querySelector("#inputStatus");
     const todoObj = {
-        titleValue : titleValue,
-        writerValue : writerValue,
-        yearValue : yearValue,
-        isCompleted : isCompleted,
+        titleValue : inputTitle.value.trim(),
+        writerValue : inputWriter.value.trim(),
+        yearValue : inputYear.value.trim(),
+        isCompleted : isCompleted.checked,
         id : generateId()
     }
     todoList.push(todoObj);
     update(todoList);
-
+    
     clearTodo();
     todoList.forEach(todo => renderTodo(todo));
+
+    inputTitle.value = "";
+    inputWriter.value = "";
+    inputYear.value = "";
+    isCompleted.checked = false;
 })
+
 document.addEventListener("DOMContentLoaded", function(){
     createLocalStorage();
 
