@@ -1,0 +1,1 @@
+export const LOCAL_STR_KEY = "bookshelf-app";
