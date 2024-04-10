@@ -3,6 +3,8 @@ import { LOCAL_STR_KEY } from "./config.js";
 const completedTodo = document.querySelector(".todo__list-selesai");
 const uncompletedTodo = document.querySelector(".todo__list-belum");
 const form = document.querySelector(".form");
+const btnAddToList = document.querySelector(".form__btn-add-to-list");
+
 const submitBtn = document.querySelector(".form__submit");
 const todoEl = document.querySelector(".todo");
 const searchInput = document.querySelector(".search__input-search");
@@ -114,7 +116,6 @@ todoEl.addEventListener("click", function(e){
 overlay.addEventListener("click", function(){
     form.classList.remove("form-edit");
     overlay.classList.add("hidden");
-    btnClose.classList.add("hidden");
     submitBtn.value = "Masukan ke rak";
 })
 
@@ -137,6 +138,11 @@ form.addEventListener("submit", function(e){
         yearValue : inputYear.value.trim(),
         isCompleted : isCompleted.checked,
         id : generateId()
+    }
+
+    console.log(e.target);
+    if(e.target.classList.contains("form-edit")){
+        console.log("edit");
     }
     todoList.push(todoObj);
     update(todoList);

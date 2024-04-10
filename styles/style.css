@@ -36,6 +36,18 @@
     transition:all linear 500ms;
     transition-property: margin-top;
 }
+
+.form__transtion{
+    width: 50%;
+    position:fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: visible;
+    transition:all linear 500ms;
+    transition-property: top,width;
+}
 .form__elemen{
     margin-bottom: 14px;
 }
@@ -74,6 +86,12 @@
     border: unset;
     font-size: 0.6875rem;
     color: #FFFFFF;
+    cursor: pointer;
+}
+.form__btn-close{
+    position: absolute;
+    right: 10px;
+    top: 10px;
     cursor: pointer;
 }
 
@@ -226,12 +244,7 @@
 .hidden{
     display: none;
 }
-.form__btn-close{
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    cursor: pointer;
-}
+
 
 
 @media only screen and (min-width: 720px){
