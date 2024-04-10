@@ -210,7 +210,7 @@
     margin: 2px 0 8px 0;
     font-size: 0.625rem;
 }
-.card__btn-selesai{
+.card__btn-pindah{
     border: unset;
     cursor: pointer;
     margin-right: 20px;
@@ -251,11 +251,4 @@
     .todo{
         flex-direction: row;
     }
-    /* .todo__belum{
-        width: 480px;
-        margin-right: 1.25rem;
-    }
-    .todo__selesai{
-        width: 480px;
-    } */
 }

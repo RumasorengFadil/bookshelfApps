@@ -4,14 +4,18 @@ const completedTodo = document.querySelector(".todo__list-selesai");
 const uncompletedTodo = document.querySelector(".todo__list-belum");
 const form = document.querySelector(".form");
 const btnAddToList = document.querySelector(".form__btn-add-to-list");
-
 const submitBtn = document.querySelector(".form__submit");
 const todoEl = document.querySelector(".todo");
 const searchInput = document.querySelector(".search__input-search");
 const overlay = document.querySelector(".overlay");
 const btnClose = document.querySelector(".form__btn-close");
+let inputTitle = document.querySelector("#inputJudul");
+let inputWriter = document.querySelector("#inputPenulis");
+let inputYear = document.querySelector("#inputTahun");
+let isCompleted = document.querySelector("#inputStatus");
 let todoList = [];
 
+//todo Function
 const renderTodo = function(todo){
     const todoMarkup = `
     <div class="card" id=${todo.id}>
@@ -19,7 +23,7 @@ const renderTodo = function(todo){
         <p class="card__tahun">${todo.yearValue}</p>
         <h5 class="card__judul">${todo.titleValue}</h5>
         <figcaption class="card__penulis">${todo.writerValue}</figcaption>
-        <img class="card__btn-selesai" src="assets/icon/${todo.isCompleted?'rotate-ccw':'check-square'}.svg" alt="Undo">
+        <img class="card__btn-pindah" src="assets/icon/${todo.isCompleted?'rotate-ccw':'check-square'}.svg" alt="Undo">
         <img class="card__btn-delete" src="assets/icon/trash.svg" alt="Delete">
     </div>
     `;
@@ -53,10 +57,9 @@ const generateId = function(){
 
 const toggleTodoList = function(){
     const cardId = +this.target.closest(".card").id;
+    const todoIndex = todoList.findIndex(todo => todo.id === cardId);
 
-    todoList[cardId].isCompleted = !todoList[cardId].isCompleted;
-
-    update(todoList);
+    todoList[todoIndex].isCompleted =  !todoList[todoIndex].isCompleted;
 
     clearTodo();
     todoList.forEach(todo => renderTodo(todo));
@@ -73,9 +76,21 @@ const deleteTodo = function(){
     clearTodo();
     todoList.forEach(todo => renderTodo(todo));
 }
+const toggleEditForm = function(){
+    form.classList.toggle("form-edit");
+    overlay.classList.toggle("hidden");
+    btnClose.classList.toggle("hidden");
+    submitBtn.value = "Masukan ke rak";
+}
 
+const clearForm = function(){
+    inputTitle.value = "";
+    inputWriter.value = "";
+    inputYear.value = "";
+    isCompleted.checked = false;
+}
 
-
+// todo Event
 searchInput.addEventListener("input", function(){
     const todoListEl = document.querySelectorAll(".card");
     const searchValue = searchInput.value.toLowerCase();
@@ -96,42 +111,44 @@ searchInput.addEventListener("input", function(){
 })
 
 todoEl.addEventListener("click", function(e){
-    if(e.target.classList.contains("card__btn-selesai")){
+    if(e.target.classList.contains("card__btn-pindah")){
         toggleTodoList.call(e);
     }
 
     if(e.target.classList.contains("card__btn-delete")){
         deleteTodo.call(e);
     }
-    console.log(e.target.classList.contains("card__icn-edit"));
-    console.log(document.querySelector(".card__icn-edit"));
+
     if(e.target.classList.contains("card__icn-edit")){
-        form.classList.add("form-edit");
-        overlay.classList.remove("hidden");
-        btnClose.classList.remove("hidden");
+        toggleEditForm();
+
+        const cardId = +e.target.closest(".card").id;
+        const todo = todoList
+        .find(todo => todo.id === cardId);
+
+        inputTitle.value = todo.titleValue;
+        inputWriter.value = todo.writerValue;
+        inputYear.value = todo.yearValue;
+        isCompleted.checked = todo.isCompleted;
+        form.id = todo.id;
+        
         submitBtn.value = "Ubah";
     }
 })
 
-overlay.addEventListener("click", function(){
-    form.classList.remove("form-edit");
-    overlay.classList.add("hidden");
-    submitBtn.value = "Masukan ke rak";
-})
+overlay.addEventListener("click", _=> {
+    toggleEditForm();
+    clearForm();
+});
 
-btnClose.addEventListener("click", function(){
-    form.classList.remove("form-edit");
-    overlay.classList.add("hidden");
-    btnClose.classList.add("hidden");
-    submitBtn.value = "Masukan ke rak";
-})
+btnClose.addEventListener("click", _=> {
+    toggleEditForm();
+    clearForm();
+});
+
 form.addEventListener("submit", function(e){
     e.preventDefault();
 
-    let inputTitle = document.querySelector("#inputJudul");
-    let inputWriter = document.querySelector("#inputPenulis");
-    let inputYear = document.querySelector("#inputTahun");
-    let isCompleted = document.querySelector("#inputStatus");
     const todoObj = {
         titleValue : inputTitle.value.trim(),
         writerValue : inputWriter.value.trim(),
@@ -140,20 +157,20 @@ form.addEventListener("submit", function(e){
         id : generateId()
     }
 
-    console.log(e.target);
     if(e.target.classList.contains("form-edit")){
-        console.log("edit");
+        const indexUpdate = todoList.findIndex(todo => todo.id === +form.id);
+        todoList[indexUpdate] = todoObj;
+
+        toggleEditForm();
+    }else{
+        todoList.push(todoObj);
     }
-    todoList.push(todoObj);
     update(todoList);
     
     clearTodo();
     todoList.forEach(todo => renderTodo(todo));
 
-    inputTitle.value = "";
-    inputWriter.value = "";
-    inputYear.value = "";
-    isCompleted.checked = false;
+    clearForm();
 })
 
 document.addEventListener("DOMContentLoaded", function(){
