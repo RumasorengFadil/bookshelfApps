@@ -1,4 +1,4 @@
-import { LOCAL_STR_KEY } from "./config.js";
+import { ADD_BTN_VALUE, EDIT_BTN_VALUE, LOCAL_STR_KEY } from "./config.js";
 
 const completedTodo = document.querySelector(".todo__list-selesai");
 const uncompletedTodo = document.querySelector(".todo__list-belum");
@@ -6,10 +6,12 @@ const form = document.querySelector(".form");
 const btnAddToList = document.querySelector(".form__btn-add-to-list");
 const submitBtn = document.querySelector(".form__submit");
 const todoEl = document.querySelector(".todo");
+const popupAlert = document.querySelector(".popup-alert");
+const btnOke = document.querySelector(".popup__btn-oke");
 const searchInput = document.querySelector(".search__input-search");
 const overlay = document.querySelector(".overlay");
 const btnX = document.querySelector(".form__btn-close");
-const popupDelete = document.querySelector(".popup");
+const popupDelete = document.querySelector(".popup-delete");
 const btnDelete = document.querySelector(".popup__btn-delete");
 const btnCancel = document.querySelector(".popup__btn-cancel");
 let inputTitle = document.querySelector("#inputJudul");
@@ -40,15 +42,13 @@ const renderTodo = function(todo){
     :uncompletedTodo.insertAdjacentHTML("beforeend", todoMarkup);
 }
 const generateId = function(){
-    return todoList[todoList.length - 1]? 
-    todoList[todoList.length - 1].id+1 
-    : 0;
+    return +new Date();
 }
 const toggleEditForm = function(){
     form.classList.toggle("form-edit");
     overlay.classList.toggle("hidden");
     btnX.classList.toggle("hidden");
-    submitBtn.value = "Masukan ke rak";
+    submitBtn.value = ADD_BTN_VALUE;
 }
 const update = function(todo){
     localStorage.setItem(LOCAL_STR_KEY,JSON.stringify(todo));
@@ -75,6 +75,10 @@ const toggleTodoList = function(){
 }
 const toggleDeletePopup = function(){
     popupDelete.classList.toggle("hidden");
+    overlay.classList.toggle("hidden");
+}
+const toggleAlertPopup = function(){
+    popupAlert.classList.toggle("hidden");
     overlay.classList.toggle("hidden");
 }
 const deleteTodo = function(){
@@ -118,13 +122,14 @@ form.addEventListener("submit", function(e){
         toggleEditForm();
     }else{
         todoList.push(todoObj);
+        toggleAlertPopup();
     }
 
     update(todoList);
     
     clearTodo();
     todoList.forEach(todo => renderTodo(todo));
-
+    
     clearForm();
 })
 searchInput.addEventListener("input", function(){
@@ -169,12 +174,13 @@ todoEl.addEventListener("click", function(e){
         isCompleted.checked = todo.isCompleted;
         form.id = todo.id;
         
-        submitBtn.value = "Ubah";
+        submitBtn.value = EDIT_BTN_VALUE;
     }
 })
 btnX.addEventListener("click", function(){
     toggleEditForm();
     clearForm();
 });
+btnOke.addEventListener("click", toggleAlertPopup)
 btnCancel.addEventListener("click",toggleDeletePopup);
 btnDelete.addEventListener("click", deleteTodo);

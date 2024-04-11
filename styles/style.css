@@ -240,15 +240,19 @@
 .popup__trash-icon, .popup__title{
     margin-bottom: 10px;
 }
-.popup__btn-cancel, .popup__btn-delete{
+.popup__btn{
     border: none;
     color: #FFFFFF;
-    background-color: #BBBBBB;
-    padding: 2px 4px;
+    background-color: #2192FF;
+    padding: 0 16px;
     border-radius: 5px;
+    height: 27px;
     cursor: pointer;
 }
 
+.popup__btn-cancel{
+    background-color: #BBBBBB;
+}
 .popup__btn-delete{
     background-color: red;
 }

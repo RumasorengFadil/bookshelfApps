@@ -67,11 +67,16 @@
                 </div>
         </div>
         <div class="overlay hidden"></div>
-        <div class="popup hidden">
+        <div class="popup popup-delete hidden">
             <img class="popup__trash-icon" src="/assets/icon/trash.svg" alt="">
             <p class="popup__title">Anda Yakin?</p>
-            <button class="popup__btn-cancel">cancel</button>
-            <button class="popup__btn-delete">delete</button>
+            <button class="popup__btn popup__btn-cancel">cancel</button>
+            <button class="popup__btn popup__btn-delete">delete</button>
+        </div>
+        <div class="popup popup-alert hidden">
+            <img class="popup__success-icon" src="/assets/icon/success-circle-outline.svg" alt="">
+            <p class="popup__title">Berhasil Ditambahkan</p>
+            <button class="popup__btn popup__btn-oke">Oke</button>
         </div>
     </main>
     <script type="module" src="script.js"></script>
